@@ -1,0 +1,48 @@
+name: Build, analyze and format flutter frontend
+
+concurrency:
+  group: $-$
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+    paths:
+      - "code/flutter-frontend/**"
+      - ".github/workflows/build-main-front.yaml"
+  pull_request:
+    branches:
+      - main
+      - dev
+    paths:
+      - "code/flutter-frontend/**"
+      - ".github/workflows/build-main-front.yaml"
+
+jobs:
+  build_and_analyze:
+    defaults:
+      run:
+        working-directory: .
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.10.2
+          channel: "stable"
+          cache: true
+
+      - name: Install Dependencies
+        working-directory: code/flutter-frontend
+        run: flutter pub get
+
+      - name: Format
+        working-directory: code/flutter-frontend
+        run: dart format --set-exit-if-changed .
+
+      - name: Analyze
+        working-directory: code/flutter-frontend
+        run: flutter analyze --fatal-infos --fatal-warnings

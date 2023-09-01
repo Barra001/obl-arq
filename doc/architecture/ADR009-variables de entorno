@@ -1,0 +1,68 @@
+# Uso de variables de entorno (.env) para una mayor modificabilidad
+
+* Estado: Aceptado
+* Fecha: 2023-06-22
+
+## Participantes:
+
+* XXXXXX - Tomas Martinez
+* 258080 - Juan Pablo - Necasek
+* 252378 - Manuel - Barrabino
+
+## Contexto y Declaración del Problema
+
+En nuestro sistema, actualmente utilizamos valores codificados en el código fuente para configurar diferentes aspectos de la aplicación. Sin embargo, nos enfrentamos al desafío de hacer que la aplicación sea más modificable y configurable sin tener que modificar el código fuente. Estamos considerando utilizar variables de entorno (.env) para abordar este problema y permitir una mayor modificabilidad de la aplicación.
+
+## Factores de Decisión
+
+* Factor 1: Modificabilidad: Necesitamos una solución que nos permita realizar cambios de configuración sin modificar directamente el código fuente.
+* Factor 2: Seguridad: Es importante asegurar que las variables de entorno (.env) no sean accesibles para usuarios no autorizados o no deseados.
+* Factor 3: Portabilidad: Deseamos que la solución sea compatible y portable a través de diferentes entornos de implementación.
+
+## Opciones Consideradas
+
+* Opción 1: Continuar utilizando valores codificados en el código fuente para la configuración.
+* Opción 2: Utilizar variables de entorno (.env) para almacenar y leer la configuración de la aplicación.
+
+## Resultado de la Decisión
+
+Opción elegida: "Opción 2: Utilizar variables de entorno (.env) para almacenar y leer la configuración de la aplicación", porque nos permite separar la configuración del código fuente y proporciona una mayor modificabilidad sin necesidad de modificar directamente el código fuente.
+
+### Consecuencias Positivas
+
+* Mayor modificabilidad: Utilizar variables de entorno (.env) nos permite modificar la configuración de la aplicación sin necesidad de modificar el código fuente, lo que facilita la adaptación a diferentes entornos y requisitos.
+* Separación de la configuración: Al utilizar variables de entorno, podemos separar la configuración del código fuente, lo que mejora la mantenibilidad y facilita la gestión de configuraciones específicas para cada entorno.
+* Seguridad: Las variables de entorno (.env) pueden configurarse para ser accesibles solo para usuarios autorizados, lo que mejora la seguridad y evita que información sensible esté expuesta en el código fuente.
+* Portabilidad: El uso de variables de entorno (.env) es una solución portátil que se puede aplicar a diferentes entornos de implementación sin cambios significativos en el código fuente.
+
+### Consecuencias Negativas
+
+* Configuración adicional: Utilizar variables de entorno (.env) requerirá una configuración adicional para establecer y mantener las variables de entorno en cada entorno de implementación.
+* Mayor complejidad: La gestión de la configuración a través de variables de entorno (.env) puede agregar cierta complejidad en comparación con la configuración directa en el código fuente.
+
+## Pros y Contras de las Opciones
+
+### Opción 1: Continuar utilizando valores codificados en el código fuente para la configuración
+
+* Pros:
+  * Configuración directa: La configuración se realiza directamente en el código fuente, lo que puede facilitar la comprensión y mantenimiento de la aplicación.
+  * Menor configuración adicional: No se requiere una configuración adicional para establecer y mantener
+
+ variables de entorno.
+
+* Contras:
+  * Falta de modificabilidad: Los cambios en la configuración requieren modificar el código fuente, lo que puede ser engorroso y propenso a errores.
+  * Dificultad para adaptarse a diferentes entornos: La configuración codificada puede dificultar la adaptación de la aplicación a diferentes entornos de implementación sin modificar el código fuente.
+  * Mayor tiempo de despliegue: Realizar cambios en la configuración requerirá desplegar nuevamente la aplicación.
+
+### Opción 2: Utilizar variables de entorno (.env) para almacenar y leer la configuración de la aplicación
+
+* Pros:
+  * Mayor modificabilidad: Las variables de entorno (.env) permiten modificar la configuración sin necesidad de modificar el código fuente.
+  * Separación de la configuración: La configuración se separa del código fuente, lo que facilita la gestión de configuraciones específicas para cada entorno.
+  * Mejora de la seguridad: Las variables de entorno (.env) pueden configurarse para ser accesibles solo para usuarios autorizados, mejorando la seguridad de la aplicación.
+  * Portabilidad: El uso de variables de entorno es una solución portátil que se puede aplicar a diferentes entornos de implementación sin cambios significativos en el código fuente.
+
+* Contras:
+  * Configuración adicional: Utilizar variables de entorno (.env) requerirá una configuración adicional para establecer y mantener las variables de entorno en cada entorno de implementación.
+  * Mayor complejidad: La gestión de la configuración a través de variables de entorno (.env) puede agregar cierta complejidad en comparación con la configuración directa en el código fuente.

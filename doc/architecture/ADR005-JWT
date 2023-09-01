@@ -1,0 +1,75 @@
+# [Uso de JWT y Federated Identity]
+
+* Status: accepted
+* Date: 2023-06-22
+
+* Participants: 
+* #257146 - Santiago - Palacio
+* #258080 - Juan Pablo - Necasek.
+* #252378 - Manuel - Barrabino.
+
+
+## Context and Problem Statement
+
+Queremos implementar una API que permita a los usuarios registrarse e iniciar sesión. La API debe almacenar las contraseñas de forma segura utilizando técnicas de hashing o encriptación. Además, se deben validar todos los datos de manera adecuada y devolver mensajes de error apropiados cuando sea necesario.
+
+
+## Decision Drivers
+
+* Seguridad de las contraseñas
+
+* Validación de datos adecuada
+
+
+## Considered Options
+
+* Opción 1: Implementar la autenticación utilizando JSON Web Tokens (JWT) y almacenar las contraseñas con hashing utilizando bcrypt. Además utilizar el patrón Federated Identity para aportar un nivel más de seguridad.
+
+* Opción 2: Implementar la autenticación utilizando sesiones y almacenar las contraseñas con hashing utilizando bcrypt.
+
+
+## Decision Outcome
+
+Se seleccionó la Opción 1: Implementar la autenticación utilizando JSON Web Tokens (JWT) y almacenar las contraseñas con hashing utilizando bcrypt. Además utilizar el patrón Federated Identity para aportar un nivel más de seguridad.
+
+
+### Positive Consequences
+
+* Mayor seguridad: El uso de JWT proporciona una capa adicional de seguridad en comparación con las sesiones.
+
+* Escalabilidad: Al utilizar JWT, se puede implementar una arquitectura sin estado, lo que permite una mayor escalabilidad en el manejo de la autenticación.
+
+* Desacoplamiento: Utilizar el patrón Federated Identity desacopla la autenticación de la autorización.
+
+
+### Negative Consequences
+
+* Mayor complejidad: La implementación de JWT puede requerir un mayor nivel de complejidad en comparación con las sesiones.
+
+* Requiere gestión de tokens: Es necesario implementar un mecanismo para gestionar y revocar tokens JWT en caso de pérdida o robo.
+
+
+## Pros and Cons of the Options
+
+### [option 1]
+
+* Bueno, porque ofrece una mayor seguridad al utilizar JWT en comparación con las sesiones.
+
+* Bueno, porque permite una arquitectura sin estado y mayor escalabilidad.
+
+* Bueno, porque ofrece un menor acoplamiento entre autenticación y autorización
+
+* Malo, porque requiere una mayor complejidad en la implementación.
+
+* Malo, porque necesita un mecanismo para gestionar y revocar los tokens JWT en caso de pérdida o robo.
+
+
+### [option 2]
+
+* Bueno, porque es una opción más sencilla de implementar en comparación con JWT.
+
+* Bueno, porque no requiere un mecanismo adicional para gestionar los tokens.
+
+* Malo, porque ofrece una seguridad ligeramente inferior en comparación con JWT.
+
+* Malo, porque puede limitar la escalabilidad de la aplicación en términos de manejo de sesiones.

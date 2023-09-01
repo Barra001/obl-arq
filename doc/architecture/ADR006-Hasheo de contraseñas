@@ -1,0 +1,79 @@
+# [Almacenamiento de contraseñas hasheadas en la base de datos]
+
+* Status: accepted
+* Date: 2023-06-21
+
+* Participants: 
+* #257146 - Santiago - Palacio
+* #258080 - Juan Pablo - Necasek.
+* #252378 - Manuel - Barrabino.
+
+
+## Context and Problem Statement
+
+Las contraseñas deben guardarse hasheadas o encriptadas en la base de datos.
+
+
+## Decision Drivers
+
+* Seguridad de las contraseñas
+
+* Rendimiento
+
+* Escalabilidad
+
+
+## Considered Options
+
+* Opción 1: Almacenar las contraseñas hasheadas utilizando una función de hashing como bcrypt.
+
+* Opción 2: Almacenar las contraseñas encriptadas utilizando un algoritmo de encriptación seguro.
+
+
+## Decision Outcome
+
+Se seleccionó la Opción 1: Almacenar las contraseñas hasheadas utilizando una función de hashing como bcrypt.
+
+
+### Positive Consequences
+
+* Mayor seguridad: Al utilizar una función de hashing como bcrypt, se protege la confidencialidad de las contraseñas almacenadas en caso de una posible filtración de la base de datos.
+
+* Integridad de las contraseñas: El uso de una función de hashing permite verificar la integridad de las contraseñas al comparar el hash almacenado con el hash calculado durante la autenticación.
+
+* Rendimiento: Las funciones de hashing como bcrypt están diseñadas para ser rápidas y eficientes en la verificación de contraseñas.
+
+* Escalabilidad: El uso de una función de hashing permite manejar eficientemente un gran número de usuarios y contraseñas en la base de datos.
+
+
+### Negative Consequences
+
+* Mayor complejidad: La implementación de una función de hashing y su integración con la API puede requerir un mayor nivel de complejidad en comparación con el almacenamiento encriptado.
+
+* Imposibilidad de recuperar contraseñas: Al utilizar una función de hashing, no es posible recuperar la contraseña original a partir del hash almacenado. Esto puede generar inconvenientes en el caso de que los usuarios olviden su contraseña y necesiten restablecerla.
+
+
+## Pros and Cons of the Options
+
+### [option 1]
+
+* Bueno, porque ofrece una mayor seguridad al proteger la confidencialidad de las contraseñas almacenadas.
+
+* Bueno, porque permite verificar la integridad de las contraseñas mediante la comparación de hashes.
+
+* Bueno, porque ofrece un rendimiento eficiente en la verificación de contraseñas.
+
+* Bueno, porque permite manejar eficientemente un gran número de usuarios y contraseñas.
+
+* Malo, porque puede requerir una mayor complejidad en la implementación y la integración con la API.
+
+* Malo, porque no es posible recuperar las contraseñas originales a partir de los hashes almacenados.
+
+
+### [option 2]
+
+* Bueno, porque ofrece una mayor flexibilidad al permitir recuperar las contraseñas originales en caso de necesidad.
+
+* Bueno, porque no requiere la implementación de una función de hashing adicional.
+
+* Malo, porque puede ofrecer una menor seguridad en comparación con el almacenamiento hasheado.

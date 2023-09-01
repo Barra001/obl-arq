@@ -1,0 +1,66 @@
+# Usar Mongo para guardar los logs
+
+* Estado: Aceptado
+* Fecha: 2023-06-22
+
+## Participantes:
+
+* XXXXXX - Tomas Martinez
+* 258080 - Juan Pablo - Necasek
+* 252378 - Manuel - Barrabino
+
+## Contexto y Declaración del Problema
+
+En nuestro sistema necesitamos almacenar un registro de actividad. Podemos utilizar un logger o guardarlo en Mongo.
+
+## Factores de Decisión
+
+* Factor 1: Flexibilidad en el almacenamiento y consulta de registros.
+* Factor 2: Escalabilidad y rendimiento en la gestión de registros.
+* Factor 3: Capacidad de análisis y consulta avanzada de registros.
+
+## Opciones Consideradas
+
+* Opción 1: Utilizar un registro de eventos (logger) para almacenar los registros.
+* Opción 2: Utilizar MongoDB como una base de datos para almacenar los registros de actividad.
+
+## Resultado de la Decisión
+
+Opción elegida: "Opción 2: Utilizar MongoDB como una base de datos para almacenar los registros de actividad", porque nos permite aprovechar la flexibilidad y escalabilidad de MongoDB, así como realizar consultas y análisis avanzados de los registros.
+
+### Consecuencias Positivas
+
+* Flexibilidad en el almacenamiento: Utilizar MongoDB nos permite almacenar los registros en una estructura de documentos flexible, lo que facilita la gestión de diferentes tipos de registros y su evolución en el tiempo.
+* Escalabilidad y rendimiento: MongoDB está diseñado para ser escalable horizontalmente, lo que nos brinda la capacidad de manejar grandes volúmenes de registros y mantener un rendimiento óptimo.
+* Consulta y análisis avanzado: Al utilizar MongoDB, podemos aprovechar sus capacidades de consulta y análisis avanzado para extraer información y patrones significativos de los registros.
+* Integración con otros datos: Al utilizar MongoDB como base de datos, podemos integrar los registros con otros datos almacenados en la misma base de datos, lo que facilita el análisis y la generación de informes combinados.
+
+### Consecuencias Negativas
+
+* Configuración y administración: Utilizar MongoDB para almacenar los registros requerirá configuración y administración adicionales en comparación con el uso de un registro de eventos (logger).
+* Dependencia de MongoDB: Al utilizar MongoDB, nos volvemos dependientes de esta tecnología y debemos considerar su disponibilidad y rendimiento en el entorno de implementación.
+
+## Pros y Contras de las Opciones
+
+### Opción 1: Continuar utilizando un registro de eventos (logger)
+
+* Pros:
+  * Configuración y administración más sencillas: Utilizar un registro de eventos (logger) existente no requerirá configuración adicional y su administración es generalmente sencilla.
+  * Enfoque centrado en los registros: Un registro de eventos (logger) está específicamente diseñado para la gestión de registros, lo que puede facilitar su uso y configuración.
+
+* Contras:
+  * Limitaciones en la flexibilidad y escalabilidad: Dependiendo del registro de eventos (logger) utilizado, puede haber limitaciones en cuanto a la estructura y escalabilidad de los registros.
+  * Capacidad de consulta limitada: Los registros almacenados en un registro de eventos (logger) pueden tener una capacidad de consulta limitada, lo que puede dificultar el análisis avanzado y la extracción de información significativa.
+
+### Opción 2: Utilizar MongoDB como una base de datos para almacenar los registros de actividad
+
+* Pros:
+  * Flexibilidad en el almacenamiento: Al utilizar MongoDB, podemos aprovechar su estructura de documentos flexible para almacenar registros de actividad en diferentes formatos y estructuras.
+  * Escalabilidad y rendimiento: MongoDB está diseñado para escalar horizontalmente, lo que nos permite manejar grandes volúmenes de registros y mantener un rendimiento óptimo.
+  * Consulta y análisis avanzado: Con MongoDB, podemos realizar consultas avanzadas y análisis de registros utilizando su lenguaje de consulta y capacidades de agregación.
+  * Integración con otros datos: Al utilizar MongoDB, podemos integrar los registros de actividad con otros datos almacenados en la misma base de datos, lo que facilita el análisis y la generación de informes combinados.
+
+* Contras:
+  * Configuración y administración adicionales: Utilizar MongoDB para almacenar los registros requerirá configuración y administración adicionales en comparación con el uso de un registro de eventos (logger) existente.
+  * Curva de aprendizaje: Los desarrolladores deberán familiarizarse con el uso de MongoDB y su sintaxis de consulta para aprovechar al máximo sus capacidades en la gestión de registros.
+  * Dependencia de MongoDB: Al utilizar MongoDB, nos volvemos dependientes de esta tecnología y debemos considerar su disponibilidad y rendimiento en el entorno de implementación.

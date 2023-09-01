@@ -1,0 +1,63 @@
+# Usar Cloud Storage para almacenar los videos
+
+* Estado: Aceptado
+* Fecha: 2023-06-21
+
+## Participantes:
+
+* XXXXXX - Tomas Martinez
+* 258080 - Juan Pablo - Necasek
+* 252378 - Manuel - Barrabino
+
+## Contexto y Declaración del Problema
+
+Nuestra aplicación necesita almacenar videos
+
+## Factores Determinantes de la Decisión
+
+* Escalabilidad: Esperamos un alto volumen de cargas de videos y necesitamos una solución que pueda escalar eficientemente.
+* Confiabilidad: Requerimos una solución de almacenamiento que proporcione alta disponibilidad y durabilidad para los videos.
+* Accesibilidad: Necesitamos una solución que permita un fácil acceso a los videos desde diferentes dispositivos y ubicaciones.
+* Seguridad: Debemos asegurar que los videos se almacenen de manera segura y prevenir el acceso no autorizado.
+
+## Opciones Consideradas
+
+* Opción 1: Utilizar Cloud Storage para almacenar videos.
+* Opción 2: Utilizar el file system del servidor para almacenar videos.
+
+## Resultado de la Decisión
+
+Opción elegida: Opción 1 - Utilizar Cloud Storage para almacenar videos.
+
+### Consecuencias Positivas
+
+* Escalabilidad: El Cloud Storage proporciona una infraestructura escalable que puede manejar un gran número de cargas de videos sin degradación del rendimiento.
+* Confiabilidad: El Cloud Storage ofrece alta disponibilidad y durabilidad, asegurando que los videos permanezcan accesibles y protegidos contra la pérdida de datos.
+* Accesibilidad: El Cloud Storage permite un fácil acceso a los videos desde diferentes dispositivos y ubicaciones utilizando protocolos y APIs estándar.
+* Seguridad: El Cloud Storage proporciona características de seguridad robustas, incluyendo controles de acceso y cifrado, para proteger los videos almacenados.
+
+### Consecuencias Negativas
+
+* Curva de Aprendizaje: La integración y el trabajo con el Cloud Storage pueden requerir un aprendizaje adicional y esfuerzo de desarrollo en comparación con el uso del sistema de archivos.
+* Costo: Dependiendo de los requisitos de almacenamiento y uso, puede haber costos asociados con el uso del Cloud Storage.
+
+## Ventajas y Desventajas de las Opciones
+
+### Opción 1: Utilizar el Cloud Storage para almacenar videos
+
+* Bueno, porque proporciona escalabilidad para manejar un gran volumen de cargas de videos.
+* Bueno, porque ofrece alta disponibilidad y durabilidad para los videos almacenados.
+* Bueno, porque los videos pueden ser fácilmente accesibles desde diferentes dispositivos y ubicaciones.
+* Bueno, porque proporciona características de seguridad robustas para proteger los videos almacenados.
+* Malo, porque la integración y el trabajo con cloud storage pueden requerir una curva de aprendizaje.
+* Malo, porque puede haber costos asociados depende los requisitos de almacenamiento y uso.
+
+### Opción 2: Utilizar el file system del servidor para almacenar videos
+
+* Bueno, porque puede tener una implementación más sencilla en comparación con la integración con el Cloud Storage.
+* Bueno, porque puede no haber costos adicionales asociados con el uso del file system.
+* Malo, porque el file system puede carecer de escalabilidad para manejar un gran número de cargas de videos.
+* Malo, porque el sistema de archivos puede no proporcionar el mismo nivel de disponibilidad y durabilidad que el cloud storage.
+* Malo, porque puede ser más difícil acceder a los videos desde diferentes dispositivos y ubicaciones.
+
+Considerando los factores determinantes de la decisión y las consecuencias positivas asociadas con la Opción 1, el equipo ha decidido utilizar el cloud storage para almacenar videos en nuestra aplicación. Esta elección proporciona escalabilidad, confiabilidad, accesibilidad y seguridad para nuestras necesidades de almacenamiento de videos, superando la posible curva de aprendizaje y los costos asociados.

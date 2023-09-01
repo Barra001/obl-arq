@@ -1,0 +1,67 @@
+# Utilizar PM2 en modo de clúster como balanceador de carga rudimentario
+
+* Status: accepted
+* Date: 2023-06-22
+
+* Participants: 
+* #257146 - Santiago - Palacio
+* #258080 - Juan Pablo - Necasek.
+* #252378 - Manuel - Barrabino.
+
+## Contexto y Declaración del Problema
+
+Nuestro sistema tiene que estar preparado para un aumento en la carga de trabajo y necesitamos encontrar una solución para distribuir eficientemente esa carga entre múltiples instancias de nuestra aplicación. Estamos considerando utilizar PM2 en modo de clúster como una solución rudimentaria para balancear la carga y mejorar el rendimiento.
+
+## Factores de Decisión
+
+* Factor 1: Necesidad de distribuir la carga de trabajo entre múltiples instancias para mejorar el rendimiento y la capacidad de respuesta.
+* Factor 2: Utilización de recursos: Deseamos aprovechar al máximo los recursos disponibles en el entorno de implementación.
+
+## Opciones Consideradas
+
+* Opción 1: Utilizar solo PM2 sin el modo de clúster.
+* Opción 2: Utilizar PM2 en modo de clúster para distribuir la carga de trabajo entre múltiples instancias.
+
+## Resultado de la Decisión
+
+Opción elegida: "Opción 2: Utilizar PM2 en modo de clúster para distribuir la carga de trabajo entre múltiples instancias", porque nos permite aprovechar los recursos disponibles y mejorar el rendimiento del sistema al distribuir eficientemente la carga de trabajo.
+
+### Consecuencias Positivas
+
+* Distribución de carga: Utilizando PM2 en modo de clúster, podemos distribuir la carga de trabajo entre múltiples instancias de nuestra aplicación, lo que mejora el rendimiento y la capacidad de respuesta.
+* Aprovechamiento de recursos: Al utilizar el modo de clúster, podemos aprovechar al máximo los recursos disponibles en el entorno de implementación al ejecutar múltiples instancias de nuestra aplicación.
+* Tolerancia a fallos: Si una instancia de la aplicación falla, PM2 puede gestionar automáticamente la reasignación de la carga de trabajo a otras instancias activas, mejorando la tolerancia a fallos del sistema.
+* Escalabilidad: PM2 en modo de clúster permite escalar verticalmente agregando más instancias de la aplicación según sea necesario para manejar cargas de trabajo crecientes.
+
+### Consecuencias Negativas
+
+* Configuración y administración: Utilizar PM2 en modo de clúster puede requerir una configuración y administración más complejas que utilizar PM2 sin el modo de clúster.
+* Uso de recursos adicionales: Al ejecutar múltiples instancias de la aplicación, se requerirá un uso adicional de recursos, como memoria y CPU, en comparación con una sola instancia.
+
+## Pros y Contras de las Opciones
+
+### Opción 1: Utilizar solo PM2 sin el modo de clúster
+
+* Pros:
+  * Configuración y administración más sencillas: Utilizar PM2 sin el modo de clúster simplifica la configuración y administración de la aplicación en comparación con el modo de clúster.
+  * Uso de recursos más bajo: Al tener una sola instancia de la aplicación, se utiliza menos memoria y CPU en comparación con el modo de clúster.
+
+* Contras:
+
+    * Falta de distribución de carga: Sin el modo de clúster, no podemos distribuir eficientemente la carga de trabajo entre múltiples instancias, lo que puede limitar el rendimiento y la capacidad de respuesta del sistema.
+    
+    * Menor escalabilidad: Utilizar una sola instancia de la aplicación limita la escalabilidad vertical para manejar cargas de trabajo crecientes.
+    
+### Opción 2: Utilizar PM2 en modo de clúster
+
+* Pros:
+
+    * Distribución de carga: PM2 en modo de clúster permite distribuir la carga de trabajo entre múltiples instancias de la aplicación, mejorando el rendimiento y la capacidad de respuesta.
+    * Aprovechamiento de recursos: Al utilizar el modo de clúster, podemos aprovechar al máximo los recursos disponibles en el entorno de implementación al ejecutar múltiples instancias de la aplicación.
+    * Tolerancia a fallos: PM2 puede gestionar automáticamente la reasignación de la carga de trabajo en caso de fallos, mejorando la tolerancia a fallos del sistema.
+    * Escalabilidad: PM2 en modo de clúster permite escalar verticalmente agregando más instancias de la aplicación según sea necesario para manejar cargas de trabajo crecientes.
+
+* Contras:
+
+    * Configuración y administración más complejas: Utilizar PM2 en modo de clúster puede requerir una configuración y administración más complejas que utilizar PM2 sin el modo de clúster.
+    * Uso de recursos adicionales: Al ejecutar múltiples instancias de la aplicación, se requerirá un uso adicional de recursos, como memoria y CPU, en comparación con una sola instancia.
