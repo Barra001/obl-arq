@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
 import 'package:stock_simulation_game/counter/counter.dart';
 
 class CounterPage extends StatelessWidget {
@@ -27,7 +30,36 @@ class CounterView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () => context.read<CounterCubit>().increment(),
+            onPressed: () async {
+              const url = 'http://localhost:3000/admins/login';
+              final body = jsonEncode({
+                'username': 'Manu admin',
+                'password': '12345678',
+              });
+
+              final headers = {
+                'Content-Type': 'application/json',
+              };
+
+              try {
+                final response = await http.post(
+                  Uri.parse(url),
+                  body: body,
+                  headers: headers,
+                );
+
+                if (response.statusCode == 200) {
+                  print('Response data:');
+                  print(response.body);
+                } else {
+                  print('Failed to login.');
+                  print('Status code: ${response.statusCode}');
+                  print('Reason: ${response.reasonPhrase}');
+                }
+              } catch (e) {
+                print('An error occurred: $e');
+              }
+            },
             child: const Icon(Icons.add),
           ),
           const SizedBox(height: 8),

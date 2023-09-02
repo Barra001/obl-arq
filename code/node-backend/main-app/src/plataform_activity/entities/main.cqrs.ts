@@ -1,3 +1,3 @@
 export class MainCqrs {
-  constructor(public eventName: string) {}
+  constructor(public gameName: string) {}
 }

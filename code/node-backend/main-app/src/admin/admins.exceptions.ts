@@ -6,12 +6,6 @@ export class AdminAlreadyExistsException extends AppException {
   }
 }
 
-export class AdminInvalidName extends AppException {
-  constructor() {
-    super(400, "Admin Invalid Name");
-  }
-}
-
 export class AdminInvalidPassword extends AppException {
   constructor() {
     super(400, "Admin Invalid Password");

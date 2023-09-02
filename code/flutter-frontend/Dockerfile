@@ -2,7 +2,7 @@
 FROM debian:latest AS build-env
 # Install flutter dependencies
 RUN apt-get update
-RUN apt-get install -y curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback lib32stdc++6 python3 sed
+RUN apt-get install -y curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback python3 sed
 RUN apt-get clean
 # Clone the flutter repo
 RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
@@ -10,7 +10,7 @@ RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 WORKDIR /usr/local/flutter
 # Fetch repository commits
 RUN git fetch
-# Checkout to project  flutter version 3.10.2 
+# Checkout to project flutter version 3.10.2 
 RUN git checkout 9cd3d0d9ff05768afa249e036acc66e8abe93bff
 # Reset working directory
 WORKDIR /
