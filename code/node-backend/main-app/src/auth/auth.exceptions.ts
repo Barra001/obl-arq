@@ -18,14 +18,19 @@ export class NoTokenPresentException extends AppException {
   }
 }
 
-export class ExternalAuthApiError extends AppException {
-  constructor() {
-    super(500, "Unknown auth API Error");
-  }
-}
-
 export class UserNotExistsException extends AppException {
   constructor() {
     super(401, "Invalid user credentials");
+  }
+}
+export class NotEnoughPrivilegesException extends AppException {
+  constructor() {
+    super(403, "User does not have enough privileges");
+  }
+}
+
+export class InvalidTokenException extends AppException {
+  constructor() {
+    super(401, "Invalid token");
   }
 }

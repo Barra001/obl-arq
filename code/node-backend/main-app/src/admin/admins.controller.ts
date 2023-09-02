@@ -9,7 +9,7 @@ export class AdminsController {
   constructor(
     private readonly adminsService: AdminsServiceInterface,
     private readonly authService: AuthServiceInterface
-  ) {}
+  ) { }
 
   async register(req: Request, res: Response): Promise<void> {
     const payload = await this.authService.verifyRequestForRoles(req, [

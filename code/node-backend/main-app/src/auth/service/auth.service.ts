@@ -1,7 +1,8 @@
 import { AuthPayload, Role } from "./../entities/auth.payload";
 import {
-  ExternalAuthApiError,
+  InvalidTokenException,
   NoTokenPresentException,
+  NotEnoughPrivilegesException,
   UndefinedRoleException,
   UndefinedUserException,
   UserNotExistsException,
@@ -9,22 +10,27 @@ import {
 import { Request } from "express";
 import { AuthServiceInterface } from "./auth.service.interface";
 import { User } from "./../entities/auth.entity";
-import dotenv from "dotenv";
-import { AppException } from "./../../exception_filter/app.exception";
-import axios from "axios";
 import { AuthRepositoryInterface } from "../repository/auth.repository.ineterface";
 import { EncryptionServiceInterface } from "../../encryption/service/encryption.interface";
+import { sign, verify } from "jsonwebtoken";
+import { readFileSync } from "fs";
 
+const privateKey = readFileSync("./private.key");
+const publicKey = readFileSync("./public.key");
 export class AuthService implements AuthServiceInterface {
-  private apiUrl: string;
 
   constructor(
     private readonly authRepository: AuthRepositoryInterface,
     private readonly encryptionService: EncryptionServiceInterface
   ) {
-    dotenv.config();
-    this.apiUrl = process.env.AUTH_API_URL;
   }
+  private static tokenOptions = { expiresIn: "1h", algorithm: "RS256" };
+
+  private async generateToken(payload: AuthPayload): Promise<string> {
+    const token = await sign(payload, privateKey, AuthService.tokenOptions);
+    return token;
+  }
+
 
   async logInUser(user: User, role: Role): Promise<string> {
     if (!user) {
@@ -44,28 +50,13 @@ export class AuthService implements AuthServiceInterface {
     if (!userMatches) {
       throw new UserNotExistsException();
     }
-    const url = `${this.apiUrl}/sessions/${role}`;
-    let result;
-    let message;
-    let statusCode;
-    await axios
-      .post(url, user)
-      .then(function (response) {
-        const { token } = response.data;
-        if (!token) {
-          message = response.data.message;
-          statusCode = response.data.statusCode;
-        } else {
-          result = token;
-        }
-      })
-      .catch(function () {
-        throw new ExternalAuthApiError();
-      });
-    if (!result) {
-      throw new AppException(statusCode, message);
-    }
-    return result;
+    const payload: AuthPayload = {
+      username: user.username,
+      password: user.password,
+      role: role,
+    };
+    const token = await this.generateToken(payload);
+    return token;
   }
 
   async verifyRequestForRoles(
@@ -77,27 +68,15 @@ export class AuthService implements AuthServiceInterface {
     if (!token) {
       throw new NoTokenPresentException();
     }
-    const url = `${this.apiUrl}/sessions`;
-    let result;
-    let message;
-    let statusCode;
-    await axios
-      .post(url, { roles: rolesPermitted }, { headers: { token: token } })
-      .then(function (response) {
-        const { payload } = response.data;
-        if (!payload) {
-          message = response.data.message;
-          statusCode = response.data.statusCode;
-        } else {
-          result = payload;
-        }
-      })
-      .catch(function () {
-        throw new ExternalAuthApiError();
-      });
-    if (!result) {
-      throw new AppException(statusCode, message);
+    let payload: AuthPayload;
+    try {
+      payload = await verify(token, publicKey);
+    } catch (error) {
+      throw new InvalidTokenException();
     }
-    return result;
+    if (!rolesPermitted.includes(payload.role)) {
+      throw new NotEnoughPrivilegesException();
+    }
+    return payload;
   }
 }
