@@ -16,7 +16,7 @@ export class AdminsController {
       Role.ADMIN,
     ]);
     const data: Admin = req.body;
-    const admin = await this.adminsService.create(data, payload.username);
+    const admin = await this.adminsService.create(data, payload.username, 'some game');
     res.send(admin);
   }
 
