@@ -3,15 +3,13 @@ name: Build node backend
 on:
   push:
     branches:
-      - main
-      - dev
+      - '*'
     paths:
       - "code/node-backend/main-app/**"
       - ".github/workflows/build-main-back.yaml"
   pull_request:
     branches:
-      - main
-      - dev
+      - '*'
     paths:
       - "code/node-backend/main-app/**"
       - ".github/workflows/build-main-back.yaml"
